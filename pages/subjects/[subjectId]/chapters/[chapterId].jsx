@@ -4,12 +4,13 @@ import React, { useState } from "react";
 // import NotFoundPage from "../NotFoundPage";
 import {
   ImageCarousel,
-  FlashCardsCarousel,
-  QuizCarousel,
   VideoCarousel,
   ExperimentsCarousel,
   SimulationsCarousel,
+  // QuizCarousel,
 } from "../../../../components/carousels";
+import FlashCardsCarousel from "../../../../components/carousels/FlashCardsCarousel";
+import QuizCarousel from "../../../../components/carousels/QuizCarousel";
 import TabNav from "../../../../components/UI/TabNav";
 
 function ChapterDetailsPage() {
@@ -26,10 +27,12 @@ function ChapterDetailsPage() {
       carousel = <VideoCarousel subjectId={subjectId} chapterId={chapterId} />;
       break;
     case 2:
+      // carousel = <FlashCardsCarousel subjectId={subjectId} chapterId={chapterId} />;
       carousel = <FlashCardsCarousel subjectId={subjectId} chapterId={chapterId} />;
       break;
     case 3:
-      carousel = <QuizCarousel subjectId={subjectId} chapterId={chapterId} />;
+      // carousel = <QuizCarousel subjectId={subjectId} chapterId={chapterId} />;
+      carousel = <QuizCarousel subjectId={subjectId} chapterId={chapterId}  />;
       break;
     case 4:
       carousel = <SimulationsCarousel subjectId={subjectId} chapterId={chapterId} />;

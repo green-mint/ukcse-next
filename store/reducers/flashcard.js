@@ -39,7 +39,8 @@ const flashcardReducer = (state = initialState, action) => {
         isQuestion: true,
       };
     case SET_CARDS_C:
-      // console.log("Set Cards reducer ran");
+      console.log("Set Cards reducer ran");
+      console.log(action.payload);
       return {
         ...state,
         cards: action.payload,

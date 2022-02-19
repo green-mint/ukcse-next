@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Formik } from "formik";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -56,6 +56,8 @@ function Register() {
               setSubmitting(false);
               resetForm();
               toast("Successfully registered");
+              // Router.push("/auth/login");
+              // TODO: redirect to login page
             }).catch(err => {
               toast.error("Failed to register user. Try again.");
               console.log(err);

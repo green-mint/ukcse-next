@@ -24,7 +24,7 @@ function VideoCarousel({ subjectId, chapterId }) {
   };
 
   useEffect(() => {
-    const url = `${process.env.REACT_APP_BACKEND_URL}/api/subjects/${subjectId}/chapters/${chapterId}/videos`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/subjects/${subjectId}/chapters/${chapterId}/videos`;
     console.log(url);
     axios
       .get(url)
@@ -32,7 +32,7 @@ function VideoCarousel({ subjectId, chapterId }) {
         setVideos(
           res.data.videos.map((video) => ({
             id: video.id,
-            url: `${process.env.REACT_APP_BACKEND_URL}/${video.slug}`,
+            url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/${video.slug}`,
           }))
         );
       })
