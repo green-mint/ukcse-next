@@ -4,14 +4,18 @@ import React from "react";
 // import ButtonLink from "../UI/ButtonLink";
 
 function ButtonList({ data }) {
-  const buttons = data.map((item) => (
+  const buttons = data.map(item => (
     <Link href={item.navigateTo} key={item.id}>
-      <a className="bg-btn-bg text-btn-text px-4 py-2 rounded-md hover:bg-btn-bg-hover">{item.name}</a>
+      <a className="bg-btn-bg text-btn-text px-4 py-2 rounded-md hover:bg-btn-bg-hover w-full">
+        {item.name}
+      </a>
     </Link>
   ));
   return (
-    <div className="py-6 space-y-3 flex flex-col items-center justify-center">
-      {buttons}
+    <div className="flex items-center justify-center">
+      <div className="w-1/2 md:w-1/5 lg:w-1/6 py-6 space-y-3 flex flex-col items-center justify-center">
+        {buttons}
+      </div>
     </div>
   );
 }

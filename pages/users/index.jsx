@@ -3,16 +3,16 @@ import React from "react";
 import ButtonList from "../../components/content/ButtonList";
 import Container from "../../components/layout/Container";
 
-function SubjectsList({ subjects }) {
-  if (!subjects) {
+function UsersList({ users }) {
+  if (!users) {
     return <Container>Error</Container>;
   }
   return (
     <Container>
       <div className="text-center py-8">
-        <h1 className="text-3xl font-semibold">Subjects</h1>
+        <h1 className="text-3xl font-semibold">Users</h1>
         <div>
-          <ButtonList data={subjects} />
+          <ButtonList data={users} />
         </div>
       </div>
     </Container>
@@ -20,22 +20,21 @@ function SubjectsList({ subjects }) {
 }
 
 export async function getStaticProps() {
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/subjects`;
-
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users`;
   try {
     const res = await axios.get(url);
     return {
       props: {
-        subjects: res.data.subjects.map(subject => ({
-          name: subject.name,
-          id: subject.id,
-          navigateTo: `/subjects/${subject.id}/chapters`,
+        users: res.data.users.map(user => ({
+          name: user.name,
+          id: user.id,
+          navigateTo: `/users/${user.id}/profile`,
         })),
       },
       revalidate: 10,
     };
   } catch (err) {
-    console.log("Error Occurred while fetching subjects");
+    console.log("Error Occurred while fetching users");
     console.log(url);
     // console.log(err);
     return {
@@ -45,4 +44,4 @@ export async function getStaticProps() {
   }
 }
 
-export default SubjectsList;
+export default UsersList;
