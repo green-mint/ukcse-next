@@ -16,8 +16,9 @@ import TabNav from "../../../../components/UI/TabNav";
 function ChapterDetailsPage() {
   const router = useRouter();
   const { subjectId, chapterId } = router.query;
-  if (!subjectId || !chapterId) return null;
   const [currTab, setCurrTab] = useState(0);
+  if (!subjectId || !chapterId) return null;
+  
   let carousel = null;
   switch (currTab) {
     case 0:
