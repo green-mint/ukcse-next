@@ -17,8 +17,8 @@ import axios from "axios";
 function FlashCardsCarousel({ subjectId, chapterId }) {
   // const [cards, setCards] = useState(null);
 
-  const token = useSelector((state) => state.user.token);
-  const flashcards = useSelector((state) => state.flashcard);
+  const token = useSelector(state => state.user.token);
+  const flashcards = useSelector(state => state.flashcard);
   // console.log(flashcards);
   const dispatch = useDispatch();
 
@@ -47,7 +47,7 @@ function FlashCardsCarousel({ subjectId, chapterId }) {
     console.log(url);
     axios
       .get(url)
-      .then((res) => {
+      .then(res => {
         dispatch(
           setCards(
             res.data.flashCard.map(card => ({
@@ -58,7 +58,7 @@ function FlashCardsCarousel({ subjectId, chapterId }) {
           )
         );
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("Error while getting flashcards");
         console.log(err);
       });
@@ -69,10 +69,13 @@ function FlashCardsCarousel({ subjectId, chapterId }) {
   if (flashcards.repeatedCards.length === 0) {
     return <div>No content found!</div>;
   }
-  const imgUrl = flashcards.isQuestion ? flashcards.repeatedCards[flashcards.currentCardIndex].questionUrl : flashcards.repeatedCards[flashcards.currentCardIndex].answerUrl
+  const imgUrl = flashcards.isQuestion
+    ? flashcards.repeatedCards[flashcards.currentCardIndex].questionUrl
+    : flashcards.repeatedCards[flashcards.currentCardIndex].answerUrl;
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <FlashcardsHeader
+        className={`mt-4`}
         prev={backHandler}
         next={forwardHandler}
         flipCard={flipHandler}
@@ -92,8 +95,22 @@ function FlashCardsCarousel({ subjectId, chapterId }) {
             : flashcards.repeatedCards[flashcards.currentCardIndex].answerUrl,
         }}
       /> */}
-      <div className="w-96 h-96 relative bg-slate-900">
-        <Image className="overflow-hidden" loader={() => imgUrl} src={imgUrl} layout="fill" alt={imgUrl} />
+      <div
+        className="relative bg-slate-900 mt-2"
+        style={{
+          width: "60%",
+          minWidth: "60%",
+        }}
+      >
+        <Image
+          width={911}
+          height={512}
+          className="overflow-hidden"
+          layout="responsive"
+          loader={() => imgUrl}
+          src={imgUrl}
+          alt={imgUrl}
+        />
       </div>
     </div>
   );

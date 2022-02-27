@@ -1,4 +1,4 @@
-import Button from "../../UI/Button";
+import SmallButton from "../../UI/SmallButton";
 import Left from "../icons/Left";
 import Right from "../icons/Right";
 
@@ -11,42 +11,32 @@ const QuizHeader = ({
   toggleRepeat,
   numRepeats,
   onRepeat,
-  submit
+  submit,
+  className,
 }) => {
   return (
-    <div className="flex justify-center items-center">
+    <div className={`flex justify-center items-center ${className}`}>
       <div>
         <Left onClick={prev} size={35} />
       </div>
 
       <div className="lg:flex space-y-3 lg:space-y-0 lg:space-x-3">
         <div className="flex justify-center space-x-3">
-          <Button
-            text="Reset"
-            onClick={reset}
-          />
-          <Button
-            text={curr}
-          />
+          <SmallButton text="Reset" onClick={reset} />
+          <SmallButton text={curr} />
 
-          <Button
-            text="Submit"
-            onClick={submit}
-          />
+          <SmallButton text="Submit" onClick={submit} />
         </div>
 
         <div className="flex justify-center space-x-3">
-          <Button
+          <SmallButton
             text={`${
               onRepeat ? "Remove from repeat" : "Add to Repeat"
             } ${numRepeats}`}
             onClick={toggleRepeat}
           />
 
-          <Button
-            text="Repeat"
-            onClick={repeat}
-          />
+          <SmallButton text="Repeat" onClick={repeat} />
         </div>
       </div>
 

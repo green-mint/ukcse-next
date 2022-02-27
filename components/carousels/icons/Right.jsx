@@ -1,12 +1,12 @@
-import React from 'react'
-import { AiFillCaretRight } from 'react-icons/ai'
+import React from "react";
+import { AiFillCaretRight } from "react-icons/ai";
 
-function Right({ onClick, size=30 }) {
+function Right({ onClick, size = 30, color }) {
   return (
-    <div>
-      <AiFillCaretRight onClick={onClick} size={size} />
+    <div className="cursor-pointer">
+      <AiFillCaretRight onClick={onClick} color={color} size={size} />
     </div>
-  )
+  );
 }
 
-export default Right
+export default Right;
