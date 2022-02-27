@@ -17,19 +17,19 @@ import QuizHeader from "./headers/QuizHeader";
 import QuizQuestion from "./QuizQuestion";
 
 function QuizCarousel({ subjectId, chapterId }) {
-  const token = useSelector((state) => state.user.token);
+  const token = useSelector(state => state.user.token);
   const [score, setScore] = useState(null);
   const dispatch = useDispatch();
 
-  const quiz = useSelector((state) => state.quiz);
+  const quiz = useSelector(state => state.quiz);
 
   const setOptionsForQuestion = (question, options) => {
     dispatch(setMarkedOptions(question, options));
   };
 
-  const getCurrentQuestionIndex = (currQuestion) => {
+  const getCurrentQuestionIndex = currQuestion => {
     return quiz.attempt.findIndex(
-      (question) => question.questionId === currQuestion.id
+      question => question.questionId === currQuestion.id
     );
   };
 
@@ -52,11 +52,11 @@ function QuizCarousel({ subjectId, chapterId }) {
           },
         }
       )
-      .then((res) => {
+      .then(res => {
         setScore(res.data.score);
         dispatch(resetQuiz());
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
         toast.error("Something went wrong while submitting quiz");
       });
@@ -71,13 +71,13 @@ function QuizCarousel({ subjectId, chapterId }) {
     console.log(url);
     axios
       .get(url)
-      .then((res) => {
+      .then(res => {
         dispatch(
           setQuestions(
-            res.data.questions.map((question) => ({
+            res.data.questions.map(question => ({
               id: question.id,
               statement: question.statement,
-              options: question.options.map((option) => ({
+              options: question.options.map(option => ({
                 id: option.id,
                 value: option.value,
               })),
@@ -85,7 +85,7 @@ function QuizCarousel({ subjectId, chapterId }) {
           )
         );
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("Error while getting questions");
         console.log(err);
       });
@@ -114,8 +114,9 @@ function QuizCarousel({ subjectId, chapterId }) {
 
   return (
     // <div></div>
-    <div>
+    <div className="flex flex-col items-center">
       <QuizHeader
+        className={`mt-4`}
         repeat={() => dispatch(repeatQuiz())}
         reset={() => dispatch(resetQuiz())}
         toggleRepeat={() => dispatch(toggleRepeat())}

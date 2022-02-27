@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loading from "../UI/Loading";
-import Image from "next/image"
-import ImageVideoHeader from "./headers/ImageVideoHeader";
+import Image from "next/image";
+import ForwardReverseHeader from "./headers/ForwardReverseHeader";
 
 function ImageCarousel({ subjectId, chapterId }) {
   const [images, setImages] = useState(null);
@@ -29,19 +29,19 @@ function ImageCarousel({ subjectId, chapterId }) {
     console.log(url);
     axios
       .get(url)
-      .then((res) => {
+      .then(res => {
         setImages(
-          res.data.images.map((image) => ({
+          res.data.images.map(image => ({
             id: image.id,
             url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/${image.slug}`,
           }))
         );
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("Error while getting images");
         console.log(err);
       });
-  }, []);
+  }, [chapterId, subjectId]);
 
   if (!images) return <Loading />;
 
@@ -49,15 +49,29 @@ function ImageCarousel({ subjectId, chapterId }) {
 
   return (
     <div className="flex flex-col items-center">
-      <ImageVideoHeader
+      <ForwardReverseHeader
         className="my-4"
         next={forwardHandler}
         prev={backHandler}
         curr={currentImage}
       />
       {/* {images[currentImage].url} */}
-      <div className="w-96 h-96 relative bg-slate-900">
-        <Image className="overflow-hidden" loader={() => images[currentImage].url} layout="fill" src={images[currentImage].url} alt={images[currentImage].id} />
+      <div
+        className="relative bg-slate-900"
+        style={{
+          width: "60%",
+          minWidth: "60%",
+        }}
+      >
+        <Image
+          width={911}
+          height={512}
+          className="overflow-hidden"
+          layout="responsive"
+          loader={() => images[currentImage].url}
+          src={images[currentImage].url}
+          alt={images[currentImage].id}
+        />
       </div>
     </div>
   );
