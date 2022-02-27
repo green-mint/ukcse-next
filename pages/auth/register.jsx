@@ -38,7 +38,7 @@ function Register() {
   };
 
   return (
-    <div className="flex flex-col mt-32 items-center w-3/5 mx-auto">
+    <div className="flex flex-col mt-32 items-center lg:w-3/5 w-full mx-auto">
       <h1 className="mb-10 text-5xl">Register</h1>
       <div className="w-full">
         <Formik
