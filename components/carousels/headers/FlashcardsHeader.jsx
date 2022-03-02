@@ -17,7 +17,7 @@ const FlashcardsHeader = ({
   return (
     <div className={`flex justify-center items-center ${className}`}>
       <div>
-        <Left onClick={prev} size={35} />
+        <Left onClick={prev} color={"rgb(59, 130, 246)"} size={35} />
       </div>
 
       <div className="lg:flex space-y-3 lg:space-y-0 lg:space-x-3">
@@ -41,7 +41,7 @@ const FlashcardsHeader = ({
       </div>
 
       <div>
-        <Right size={35} onClick={next} />
+        <Right size={35} color={"rgb(59, 130, 246)"} onClick={next} />
       </div>
     </div>
   );

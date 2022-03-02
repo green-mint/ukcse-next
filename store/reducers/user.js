@@ -1,3 +1,4 @@
+import { registerLogs } from "../../utils/registerLogs";
 import { LOGIN, LOGOUT } from "../actions/user";
 
 const initalState = {
@@ -23,6 +24,9 @@ const userReducer = (state = initalState, action) => {
         isAdmin: action.payload.isAdmin,
       };
     case LOGOUT:
+      // remove from local storage
+      localStorage.removeItem("user");
+      registerLogs(state.id, "LOGOUT", "null");
       return initalState;
     default:
       return state;

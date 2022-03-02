@@ -102,9 +102,9 @@ function QuizCarousel({ subjectId, chapterId }) {
   if (score) {
     console.log("We scored");
     return (
-      <div>
+      <div className="max-w-max mx-auto my-auto space-y-4">
         <strong className="text-2xl font-bold">Your score is {score}</strong>
-        <Button text={"Go Back"} onClick={() => setScore(null)} />
+        <Button className="text-center" text={"Go Back"} onClick={() => setScore(null)} />
       </div>
     );
   }
@@ -114,9 +114,9 @@ function QuizCarousel({ subjectId, chapterId }) {
 
   return (
     // <div></div>
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col flex-auto items-center">
       <QuizHeader
-        className={`mt-4`}
+        className={`my-4`}
         repeat={() => dispatch(repeatQuiz())}
         reset={() => dispatch(resetQuiz())}
         toggleRepeat={() => dispatch(toggleRepeat())}

@@ -13,7 +13,7 @@ function ButtonList({ data }) {
   ));
   return (
     <div className="flex items-center justify-center">
-      <div className="w-1/2 md:w-1/5 lg:w-1/6 py-6 space-y-3 flex flex-col items-center justify-center">
+      <div className="w-1/2 md:max-w-max py-6 space-y-3 flex flex-col items-center justify-center">
         {buttons}
       </div>
     </div>

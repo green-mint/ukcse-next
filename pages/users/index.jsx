@@ -28,7 +28,7 @@ export async function getStaticProps() {
         users: res.data.users.map(user => ({
           name: user.name,
           id: user.id,
-          navigateTo: `/users/${user.id}/profile`,
+          navigateTo: `/users/${user.id}`,
         })),
       },
       revalidate: 10,

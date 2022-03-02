@@ -53,9 +53,9 @@ function ChapterDetailsPage() {
   }
 
   return (
-    <div className="">
-      <div>{carousel}</div>
-      <div className="flex justify-center mb-0">
+    <div className="flex flex-col flex-auto">
+      <div className="flex flex-col flex-auto">{carousel}</div>
+      <div className="flex justify-center">
         <TabNav setCurrTab={setCurrTab} currTab={currTab} />
       </div>
     </div>

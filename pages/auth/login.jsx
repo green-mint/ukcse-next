@@ -6,10 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/actions/user";
 import withGuest from "../../components/withGuest";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import { registerLogs } from "../../utils/registerLogs";
 
 function Login() {
   const dispatch = useDispatch();
-  const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
 
   const handleFormSubmission = (values, { setSubmitting }) => {
@@ -30,11 +31,11 @@ function Login() {
         };
         localStorage.setItem("user", JSON.stringify(user));
         dispatch(login(user));
+        registerLogs(user.id, "LOGIN", "null");
         router.replace("/");
       })
       .catch(err => {
-        console.log("Error in login in user");
-        console.log(err);
+        toast.error(`Failed to register user. ${err.response.data.errors[0].message}`);
       })
       .then(() => {
         setSubmitting(false);
@@ -56,6 +57,16 @@ function Login() {
               !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
             ) {
               errors.email = "Invalid email address";
+            }
+            // min 8 characters password at least 1 digit and 1 alphabet 
+            if (!values.password) {
+              errors.password = "Required";
+            } else if (values.password.length < 8) {
+              errors.password = "Password must be at least 8 characters";
+            } else if (!/\d/.test(values.password)) {
+              errors.password = "Password must contain at least 1 digit";
+            } else if (!/[a-zA-Z]/.test(values.password)) {
+              errors.password = "Password must contain at least 1 alphabet";
             }
 
             return errors;

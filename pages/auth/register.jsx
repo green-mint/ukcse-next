@@ -29,8 +29,7 @@ function Register() {
         // TODO: redirect to login page
       })
       .catch(err => {
-        toast.error("Failed to register user. Try again.");
-        console.log(err);
+        toast.error(`Failed to register user. ${err.response.data.errors[0].message}`);
       })
       .then(() => {
         setSubmitting(false);
@@ -61,6 +60,17 @@ function Register() {
 
             if (values.name.length < 3) {
               errors.name = "Name must be at least 3 characters";
+            }
+
+            // min 8 characters password at least 1 digit and 1 alphabet 
+            if (!values.password) {
+              errors.password = "Required";
+            } else if (values.password.length < 8) {
+              errors.password = "Password must be at least 8 characters";
+            } else if (!/\d/.test(values.password)) {
+              errors.password = "Password must contain at least 1 digit";
+            } else if (!/[a-zA-Z]/.test(values.password)) {
+              errors.password = "Password must contain at least 1 alphabet";
             }
 
             if (values.confirmPassword !== values.password) {
@@ -164,7 +174,7 @@ function Register() {
         </Formik>
         <div className="mt-1 flex flex-col items-center">
           <p className="text-slate-400">or</p>
-          <Link href="/auth/register">
+          <Link href="/auth/login">
             <a className="text-slate-800 text-lg hover:text-btn-bg hover:underline">
               login
             </a>

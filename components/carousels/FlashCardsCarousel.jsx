@@ -73,7 +73,7 @@ function FlashCardsCarousel({ subjectId, chapterId }) {
     ? flashcards.repeatedCards[flashcards.currentCardIndex].questionUrl
     : flashcards.repeatedCards[flashcards.currentCardIndex].answerUrl;
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col flex-auto items-center">
       <FlashcardsHeader
         className={`mt-4`}
         prev={backHandler}
@@ -88,25 +88,12 @@ function FlashCardsCarousel({ subjectId, chapterId }) {
         numRepeats={flashcards.cardsIndexesToBeRepeated.length}
         toggleRepeat={() => dispatch(toggleRepeatCard())}
       />
-      {/* <Image
-        src={{
-          uri: flashcards.isQuestion
-            ? flashcards.repeatedCards[flashcards.currentCardIndex].questionUrl
-            : flashcards.repeatedCards[flashcards.currentCardIndex].answerUrl,
-        }}
-      /> */}
       <div
-        className="relative bg-slate-900 mt-2"
-        style={{
-          width: "60%",
-          minWidth: "60%",
-        }}
+        className="relative w-full h-full"
       >
         <Image
-          width={911}
-          height={512}
-          className="overflow-hidden"
-          layout="responsive"
+          layout="fill"
+          objectFit="contain"
           loader={() => imgUrl}
           src={imgUrl}
           alt={imgUrl}

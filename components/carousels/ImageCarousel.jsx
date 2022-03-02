@@ -48,7 +48,7 @@ function ImageCarousel({ subjectId, chapterId }) {
   if (images.length === 0) return <div>Did not find any images</div>;
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col flex-auto items-center">
       <ForwardReverseHeader
         className="my-4"
         next={forwardHandler}
@@ -57,17 +57,11 @@ function ImageCarousel({ subjectId, chapterId }) {
       />
       {/* {images[currentImage].url} */}
       <div
-        className="relative bg-slate-900"
-        style={{
-          width: "60%",
-          minWidth: "60%",
-        }}
+        className="relative w-full h-full"
       >
         <Image
-          width={911}
-          height={512}
-          className="overflow-hidden"
-          layout="responsive"
+          layout="fill"
+          objectFit="contain"
           loader={() => images[currentImage].url}
           src={images[currentImage].url}
           alt={images[currentImage].id}

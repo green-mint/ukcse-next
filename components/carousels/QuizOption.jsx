@@ -21,7 +21,7 @@ const QuizOption = ({ text, onPress, isOptionChecked, allowedMultiple }) => {
 
   return (
     <button
-      className={`${checkedClasses} border-2 border-gray-400 p-1 m-2 rounded-lg`}
+      className={`${checkedClasses} border-2 border-gray-400 p-3 px-5  m-2 rounded-lg`}
       onClick={onOptionPressHandler}
     >
       <div>{text}</div>

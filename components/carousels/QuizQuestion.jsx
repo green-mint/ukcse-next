@@ -28,7 +28,7 @@ const QuizQuestion = ({ question, optionsChecked, setCheckedOptions }) => {
         <div className="font-bold lg:text-4xl md:text-2xl text-xl text-center my-4">
           {question.statement}
         </div>
-        <div className="flex flex-col">
+        <div className="flex mx-auto flex-col max-w-max">
           {question.options &&
             question.options.map((option, i) => (
               <QuizOption
